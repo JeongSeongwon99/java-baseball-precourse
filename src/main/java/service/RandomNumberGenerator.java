@@ -1,12 +1,14 @@
 package service;
 
+import domain.Numbers;
+
 import java.util.concurrent.ThreadLocalRandom;
 
 public class RandomNumberGenerator {
-    public String numberGenerate() {
+    public Numbers numberGenerate() {
         int[] numbers = {1, 2, 3, 4, 5, 6, 7, 8, 9};
         shuffle(numbers);
-        return "" + numbers[0] + numbers[1] + numbers[2];
+        return Numbers.from("" + numbers[0] + numbers[1] + numbers[2]);
     }
 
     private void shuffle(int[] arr) {
