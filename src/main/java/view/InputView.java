@@ -1,13 +1,36 @@
 package view;
 
+import util.InputValidator;
+
 import java.util.Scanner;
 
 public class InputView {
+    private static final String GUESS_PROMPT = "숫자를 입력해주세요 : ";
+    private static final String RESTART_PROMPT = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.";
     private static final Scanner scanner = new Scanner(System.in);
 
     public String readGuess() {
-        System.out.print("숫자를 입력해 주세요: ");
-        return scanner.nextLine();
+        while (true) {
+            System.out.print("숫자를 입력해주세요 : ");
+            String input = scanner.nextLine().trim();
+            String error = InputValidator.guessError(input);
+            if (error == null) {
+                return input;
+            }
+            System.out.println(error);
+        }
+    }
+
+    public int readRestartCommand() {
+        while (true) {
+            System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+            String input = scanner.nextLine().trim();
+            String error = InputValidator.restartError(input);
+            if (error == null) {
+                return Integer.parseInt(input);
+            }
+            System.out.println(error);
+        }
     }
 
 
