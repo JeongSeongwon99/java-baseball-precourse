@@ -1,5 +1,6 @@
 package controller;
 
+import domain.JudgeCount;
 import domain.Numbers;
 import service.GameService;
 import view.InputView;
@@ -18,6 +19,31 @@ public class GameController {
 
     public void run() {
         outputView.printStartMessage();
-        String guess = inputView.readGuess();
+        while (true) {
+            playGame();
+            if (shouldStop()) {
+                return;
+            }
+        }
+    }
+
+    private void playGame() {
+        gameService.startNewGame();
+        playUntilWin();
+    }
+
+    private void playUntilWin() {
+        while (true) {
+            JudgeCount count = gameService.play(inputView.readGuess());
+            outputView.printResult(count);
+            if (count.isThreeStrikes()) {
+                break;
+            }
+        }
+        outputView.printGameEndMessage();
+    }
+
+    private boolean shouldStop() {
+        return inputView.readRestartCommand() == 2;
     }
 }
