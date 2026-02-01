@@ -27,4 +27,8 @@ public class Numbers {
     public boolean contains(int number) {
         return numbers.contains(number);
     }
+
+    public int size() {
+        return numbers.size();
+    }
 }
