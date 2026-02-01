@@ -11,7 +11,7 @@ public class InputView {
 
     public String readGuess() {
         while (true) {
-            System.out.print("숫자를 입력해주세요 : ");
+            System.out.print(GUESS_PROMPT);
             String input = scanner.nextLine().trim();
             String error = InputValidator.guessError(input);
             if (error == null) {
@@ -23,7 +23,7 @@ public class InputView {
 
     public int readRestartCommand() {
         while (true) {
-            System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+            System.out.println(RESTART_PROMPT);
             String input = scanner.nextLine().trim();
             String error = InputValidator.restartError(input);
             if (error == null) {
