@@ -3,16 +3,22 @@ package service;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class RandomNumberGenerator {
-    static String makeAnswer() {
-        int[] d = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+    public String numberGenerate() {
+        int[] numbers = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+        shuffle(numbers);
+        return "" + numbers[0] + numbers[1] + numbers[2];
+    }
 
-        for (int i = d.length - 1; i > 0; i--) {
+    private void shuffle(int[] arr) {
+        for (int i = arr.length - 1; i > 0; i--) {
             int j = ThreadLocalRandom.current().nextInt(i + 1);
-            int tmp = d[i];
-            d[i] = d[j];
-            d[j] = tmp;
+            swap(arr, i, j);
         }
+    }
 
-        return "" + d[0] + d[1] + d[2];
+    private void swap(int[] arr, int i, int j) {
+        int tmp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = tmp;
     }
 }
