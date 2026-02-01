@@ -3,6 +3,7 @@ package view;
 import util.InputValidator;
 
 import java.util.Scanner;
+import java.util.function.Function;
 
 public class InputView {
     private static final String GUESS_PROMPT = "숫자를 입력해주세요 : ";
@@ -10,28 +11,24 @@ public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
 
     public String readGuess() {
+        return readUntilValid(GUESS_PROMPT, InputValidator::guessError);
+    }
+
+    public int readRestartCommand() {
+        String input = readUntilValid(RESTART_PROMPT, InputValidator::restartError);
+        return Integer.parseInt(input);
+    }
+
+    private String readUntilValid(String prompt, Function<String, String> validator) {
         while (true) {
-            System.out.print(GUESS_PROMPT);
+            System.out.println(prompt);
             String input = scanner.nextLine().trim();
-            String error = InputValidator.guessError(input);
+            String error = validator.apply(input);
+
             if (error == null) {
                 return input;
             }
             System.out.println(error);
         }
     }
-
-    public int readRestartCommand() {
-        while (true) {
-            System.out.println(RESTART_PROMPT);
-            String input = scanner.nextLine().trim();
-            String error = InputValidator.restartError(input);
-            if (error == null) {
-                return Integer.parseInt(input);
-            }
-            System.out.println(error);
-        }
-    }
-
-
 }
