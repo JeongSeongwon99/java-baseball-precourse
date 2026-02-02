@@ -45,4 +45,20 @@ public class Numbers {
     public int size() {
         return numbers.size();
     }
+
+    public JudgeCount judge(Numbers guess) {
+        int ball = 0;
+        int strike = 0;
+        for (int i = 0; i < size(); i++) {
+            int g = guess.get(i);
+            if (g == get(i)) {
+                strike++;
+                continue;
+            }
+            if (contains(g)) {
+                ball++;
+            }
+        }
+        return new JudgeCount(ball, strike);
+    }
 }

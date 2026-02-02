@@ -6,18 +6,15 @@ import domain.Numbers;
 
 public class GameService {
     private final RandomNumberGenerator randomNumberGenerator;
-    private final JudgeService judgeService;
-
     private Game currentGame;
 
-    public GameService(RandomNumberGenerator randomNumberGenerator, JudgeService judgeService) {
+    public GameService(RandomNumberGenerator randomNumberGenerator) {
         this.randomNumberGenerator = randomNumberGenerator;
-        this.judgeService = judgeService;
     }
 
     public void startNewGame() {
         Numbers answer = randomNumberGenerator.numberGenerate();
-        currentGame = new Game(answer, judgeService);
+        currentGame = new Game(answer);
     }
 
     public JudgeCount play(String guessInput) {

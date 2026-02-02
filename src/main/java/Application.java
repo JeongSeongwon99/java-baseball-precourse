@@ -1,6 +1,5 @@
 import controller.GameController;
 import service.GameService;
-import service.JudgeService;
 import view.InputView;
 import view.OutputView;
 import service.RandomNumberGenerator;
@@ -10,8 +9,7 @@ public class Application {
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
         GameService gameService = new GameService(
-                new RandomNumberGenerator(),
-                new JudgeService()
+                new RandomNumberGenerator()
         );
 
         new GameController(inputView, outputView, gameService).run();
