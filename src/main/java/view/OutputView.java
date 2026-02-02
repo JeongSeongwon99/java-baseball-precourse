@@ -28,11 +28,11 @@ public class OutputView {
         if (ball == 0 && strike == 0) return "낫싱";
 
         StringBuilder sb = new StringBuilder();
-        if (ball > 0) {
-            sb.append(ball).append("볼 ");
-        }
         if (strike > 0) {
-            sb.append(strike).append("스트라이크");
+            sb.append(strike).append("스트라이크 ");
+        }
+        if (ball > 0) {
+            sb.append(ball).append("볼");
         }
         return sb.toString().trim();
     }
