@@ -2,6 +2,7 @@ package controller;
 
 import domain.JudgeCount;
 import service.GameService;
+import util.Validator;
 import view.InputView;
 import view.OutputView;
 
@@ -44,6 +45,13 @@ public class GameController {
     }
 
     private boolean shouldStop() {
-        return inputView.readRestartCommand() == 2;
+        while (true) {
+            String input = inputView.readRestartCommand();
+            String error = Validator.restartError(input);
+            if (error == null) {
+                return "2".equals(input);
+            }
+            outputView.printError(error);
+        }
     }
 }

@@ -45,7 +45,7 @@ public class Validator {
         if (RESTART_CODE.equals(input) || EXIT_CODE.equals(input)) {
             return null;
         }
-        return errorMessage(String.format("재시작은 %s, 종료는 %s만 입력 가능합니다.", RESTART_CODE, EXIT_CODE));
+        return errorMessage(String.format("%s(재시작), %s(종료)만 입력 가능합니다.", RESTART_CODE, EXIT_CODE));
     }
 
     private static String errorMessage(String message) {
