@@ -1,5 +1,6 @@
 package service;
 
+import domain.Game;
 import domain.JudgeCount;
 import domain.Numbers;
 
@@ -7,8 +8,7 @@ public class GameService {
     private final RandomNumberGenerator randomNumberGenerator;
     private final JudgeService judgeService;
 
-    private Numbers answer;
-    private JudgeCount lastCount;
+    private Game currentGame;
 
     public GameService(RandomNumberGenerator randomNumberGenerator, JudgeService judgeService) {
         this.randomNumberGenerator = randomNumberGenerator;
@@ -16,18 +16,15 @@ public class GameService {
     }
 
     public void startNewGame() {
-        answer = randomNumberGenerator.numberGenerate();
-        lastCount = null;
+        Numbers answer = randomNumberGenerator.numberGenerate();
+        currentGame = new Game(answer, judgeService);
     }
 
     public JudgeCount play(String guessInput) {
-        JudgeCount count = judgeService.judge(answer, Numbers.from(guessInput));
-        lastCount = count;
-        return count;
+        return currentGame.play(guessInput);
     }
 
     public boolean isGameOver() {
-        if (lastCount == null) return false;
-        return lastCount.isThreeStrikes();
+        return currentGame.isOver();
     }
 }
