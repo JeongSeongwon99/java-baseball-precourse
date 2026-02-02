@@ -33,8 +33,12 @@ public class GameController {
 
     private void playUntilWin() {
         while (!gameService.isGameOver()) {
-            JudgeCount count = gameService.play(inputView.readGuess());
-            outputView.printResult(count);
+            try {
+                JudgeCount count = gameService.play(inputView.readGuess());
+                outputView.printResult(count);
+            } catch (IllegalArgumentException e) {
+                outputView.printError(e.getMessage());
+            }
         }
         outputView.printGameEndMessage();
     }
