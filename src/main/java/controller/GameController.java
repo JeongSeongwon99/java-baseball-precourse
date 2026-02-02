@@ -37,8 +37,8 @@ public class GameController {
             try {
                 JudgeCount count = gameService.play(inputView.readGuess());
                 outputView.printResult(count);
-            } catch (IllegalArgumentException e) {
-                outputView.printError(e.getMessage());
+            } catch (IllegalArgumentException exception) {
+                outputView.printError(exception.getMessage());
             }
         }
         outputView.printGameEndMessage();

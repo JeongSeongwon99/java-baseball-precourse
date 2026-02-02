@@ -9,10 +9,10 @@ public class Number {
         this.value = value;
     }
 
-    public static Number fromChar(char c) {
-        String error = Validator.numberError(c);
+    public static Number fromChar(char digitChar) {
+        String error = Validator.numberError(digitChar);
         if (error != null) throw new IllegalArgumentException(error);
-        return new Number(c - '0');
+        return new Number(digitChar - '0');
     }
 
     public int value() {

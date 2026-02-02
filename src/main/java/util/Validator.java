@@ -19,23 +19,23 @@ public class Validator {
     private static String validateCharacters(String input) {
         Set<Character> uniqueChars = new HashSet<>();
 
-        for (char c : input.toCharArray()) {
-            String error = numberError(c);
+        for (char digitChar : input.toCharArray()) {
+            String error = numberError(digitChar);
             if (error != null) {
                 return error;
             }
-            if (!uniqueChars.add(c)) {
+            if (!uniqueChars.add(digitChar)) {
                 return errorMessage("중복된 숫자는 사용할 수 없습니다.");
             }
         }
         return null;
     }
 
-    public static String numberError(char c) {
-        if (!Character.isDigit(c)) {
+    public static String numberError(char digitChar) {
+        if (!Character.isDigit(digitChar)) {
             return errorMessage("숫자만 입력해야 합니다.");
         }
-        if (c == '0') {
+        if (digitChar == '0') {
             return errorMessage("0은 사용할 수 없습니다.");
         }
         return null;

@@ -22,11 +22,11 @@ public class Numbers {
     }
 
     private static List<Number> parse(String input) {
-        List<Number> nums = new ArrayList<>(LENGTH);
-        for (char c : input.toCharArray()) {
-            nums.add(Number.fromChar(c));
+        List<Number> parsedNumbers = new ArrayList<>(LENGTH);
+        for (char digitChar : input.toCharArray()) {
+            parsedNumbers.add(Number.fromChar(digitChar));
         }
-        return nums;
+        return parsedNumbers;
     }
 
     public int get(int index) {
@@ -34,8 +34,8 @@ public class Numbers {
     }
 
     public boolean contains(int number) {
-        for (Number n : numbers) {
-            if (n.same(number)) {
+        for (Number numberItem : numbers) {
+            if (numberItem.same(number)) {
                 return true;
             }
         }
@@ -49,13 +49,13 @@ public class Numbers {
     public JudgeCount judge(Numbers guess) {
         int ball = 0;
         int strike = 0;
-        for (int i = 0; i < size(); i++) {
-            int g = guess.get(i);
-            if (g == get(i)) {
+        for (int index = 0; index < size(); index++) {
+            int guessDigit = guess.get(index);
+            if (guessDigit == get(index)) {
                 strike++;
                 continue;
             }
-            if (contains(g)) {
+            if (contains(guessDigit)) {
                 ball++;
             }
         }
