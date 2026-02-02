@@ -11,7 +11,7 @@ public class OutputView {
     }
 
     public void printResult(JudgeCount count) {
-        System.out.println(count.toMessage());
+        System.out.println(formatResult(count));
     }
 
     public void printGameEndMessage() {
@@ -20,5 +20,20 @@ public class OutputView {
 
     public void printError(String message) {
         System.out.println(message);
+    }
+
+    private String formatResult(JudgeCount count) {
+        int ball = count.ball();
+        int strike = count.strike();
+        if (ball == 0 && strike == 0) return "낫싱";
+
+        StringBuilder sb = new StringBuilder();
+        if (ball > 0) {
+            sb.append(ball).append("볼 ");
+        }
+        if (strike > 0) {
+            sb.append(strike).append("스트라이크");
+        }
+        return sb.toString().trim();
     }
 }

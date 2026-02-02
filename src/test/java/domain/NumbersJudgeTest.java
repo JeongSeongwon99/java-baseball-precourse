@@ -11,7 +11,8 @@ class NumbersJudgeTest {
         Numbers guess = Numbers.from("123");
 
         assertThat(answer.judge(guess).isThreeStrikes()).isTrue();
-        assertThat(answer.judge(guess).toMessage()).isEqualTo("3스트라이크");
+        assertThat(answer.judge(guess).ball()).isEqualTo(0);
+        assertThat(answer.judge(guess).strike()).isEqualTo(3);
     }
 
     @Test
@@ -19,7 +20,8 @@ class NumbersJudgeTest {
         Numbers answer = Numbers.from("123");
         Numbers guess = Numbers.from("132");
 
-        assertThat(answer.judge(guess).toMessage()).isEqualTo("2볼 1스트라이크");
+        assertThat(answer.judge(guess).ball()).isEqualTo(2);
+        assertThat(answer.judge(guess).strike()).isEqualTo(1);
     }
 
     @Test
@@ -27,6 +29,7 @@ class NumbersJudgeTest {
         Numbers answer = Numbers.from("123");
         Numbers guess = Numbers.from("456");
 
-        assertThat(answer.judge(guess).toMessage()).isEqualTo("낫싱");
+        assertThat(answer.judge(guess).ball()).isEqualTo(0);
+        assertThat(answer.judge(guess).strike()).isEqualTo(0);
     }
 }
