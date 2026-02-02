@@ -6,9 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Numbers {
-    private final List<Integer> numbers;
+    private static final int LENGTH = 3;
+    private final List<Number> numbers;
 
-    private Numbers(List<Integer> numbers) {
+    private Numbers(List<Number> numbers) {
         this.numbers = numbers;
     }
 
@@ -20,18 +21,25 @@ public class Numbers {
         return new Numbers(parse(input));
     }
 
-    private static List<Integer> parse(String input) {
-        List<Integer> nums = new ArrayList<>(3);
-        for (int i = 0; i < 3; i++) nums.add(input.charAt(i) - '0');
+    private static List<Number> parse(String input) {
+        List<Number> nums = new ArrayList<>(LENGTH);
+        for (char c : input.toCharArray()) {
+            nums.add(Number.fromChar(c));
+        }
         return nums;
     }
 
     public int get(int index) {
-        return numbers.get(index);
+        return numbers.get(index).value();
     }
 
     public boolean contains(int number) {
-        return numbers.contains(number);
+        for (Number n : numbers) {
+            if (n.same(number)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public int size() {
