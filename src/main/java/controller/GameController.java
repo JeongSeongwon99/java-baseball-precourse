@@ -1,7 +1,6 @@
 package controller;
 
 import domain.JudgeCount;
-import domain.Numbers;
 import service.GameService;
 import view.InputView;
 import view.OutputView;
