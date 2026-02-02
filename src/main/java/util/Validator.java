@@ -20,15 +20,23 @@ public class Validator {
         Set<Character> uniqueChars = new HashSet<>();
 
         for (char c : input.toCharArray()) {
-            if (!Character.isDigit(c)) {
-                return errorMessage("숫자만 입력해야 합니다.");
-            }
-            if (c == '0') {
-                return errorMessage("0은 사용할 수 없습니다.");
+            String error = numberError(c);
+            if (error != null) {
+                return error;
             }
             if (!uniqueChars.add(c)) {
                 return errorMessage("중복된 숫자는 사용할 수 없습니다.");
             }
+        }
+        return null;
+    }
+
+    public static String numberError(char c) {
+        if (!Character.isDigit(c)) {
+            return errorMessage("숫자만 입력해야 합니다.");
+        }
+        if (c == '0') {
+            return errorMessage("0은 사용할 수 없습니다.");
         }
         return null;
     }

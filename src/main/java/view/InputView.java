@@ -31,7 +31,6 @@ public class InputView {
                 return input;
             }
             System.out.println(error);
-//            throw new IllegalArgumentException(error);
         }
     }
 }
