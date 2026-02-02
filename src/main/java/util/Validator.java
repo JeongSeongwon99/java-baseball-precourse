@@ -3,7 +3,7 @@ package util;
 import java.util.HashSet;
 import java.util.Set;
 
-public class InputValidator {
+public class Validator {
     private static final String ERROR_PREFIX = "[ERROR] ";
     private static final int INPUT_LENGTH = 3;
     private static final String RESTART_CODE = "1";

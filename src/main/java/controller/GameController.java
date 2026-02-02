@@ -33,12 +33,9 @@ public class GameController {
     }
 
     private void playUntilWin() {
-        while (true) {
+        while (!gameService.isGameOver()) {
             JudgeCount count = gameService.play(inputView.readGuess());
             outputView.printResult(count);
-            if (count.isThreeStrikes()) {
-                break;
-            }
         }
         outputView.printGameEndMessage();
     }

@@ -1,5 +1,7 @@
 package domain;
 
+import util.Validator;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +13,10 @@ public class Numbers {
     }
 
     public static Numbers from(String input) {
+        String error = Validator.guessError(input);
+        if (error != null) {
+            throw new IllegalArgumentException(error);
+        }
         return new Numbers(parse(input));
     }
 

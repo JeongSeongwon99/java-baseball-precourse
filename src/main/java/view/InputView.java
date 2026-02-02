@@ -1,6 +1,6 @@
 package view;
 
-import util.InputValidator;
+import util.Validator;
 
 import java.util.Scanner;
 import java.util.function.Consumer;
@@ -13,11 +13,11 @@ public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
 
     public String readGuess() {
-        return readUntilValid(GUESS_PROMPT, System.out::print, InputValidator::guessError);
+        return readUntilValid(GUESS_PROMPT, System.out::print, Validator::guessError);
     }
 
     public int readRestartCommand() {
-        String input = readUntilValid(RESTART_PROMPT, System.out::println, InputValidator::restartError);
+        String input = readUntilValid(RESTART_PROMPT, System.out::println, Validator::restartError);
         return Integer.parseInt(input);
     }
 
@@ -31,6 +31,7 @@ public class InputView {
                 return input;
             }
             System.out.println(error);
+//            throw new IllegalArgumentException(error);
         }
     }
 }
